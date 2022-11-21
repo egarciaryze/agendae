@@ -1,10 +1,10 @@
 [
 	{
 		"type": "postgres",
-		"host": "localhost",
+		"host": "awseb-e-tnpqphbtef-stack-awsebrdsdatabase-2pqi82leg9iw.cl2cd490echn.us-east-1.rds.amazonaws.com",
 		"port": 5432,
 		"username": "postgres",
-		"password": "postgres",
+		"password": "eAYP5enJgz#7$G6c",
 		"database": "agendae",
 		"synchronize": false,
 		"entities": [
