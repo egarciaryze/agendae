@@ -1,7 +1,7 @@
 [
 	{
 		"type": "postgres",
-		"host": "awseb-e-tnpqphbtef-stack-awsebrdsdatabase-2pqi82leg9iw.cl2cd490echn.us-east-1.rds.amazonaws.com",
+		"host": "awseb-e-tnpqphbtef-stack-awsebrdsdatabase-zhhi2gtdyr91.cl2cd490echn.us-east-1.rds.amazonaws.com",
 		"port": 5432,
 		"username": "postgres",
 		"password": "eAYP5enJgz#7$G6c",
