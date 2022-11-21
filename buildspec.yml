@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - n 16
+      - echo install yarn...
+      - npm install -g yarn
+      - echo yarn -v
+      - yarn -v
+  pre_build:
+    commands:
+      - echo Install packages...
+      - yarn install
+  build:
+    commands:
+      - echo Create build...
+      - yarn run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Removing unnecessary files...
+artifacts:
+  files:
+    - '**/*'
