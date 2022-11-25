@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/ryzecapital
+    destination: /home/ec2-user/agendaedev
 hooks:
   AfterInstall:
     - location: scripts/after_install
