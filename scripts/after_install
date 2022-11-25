@@ -1,0 +1,7 @@
+#!/bin/bash
+cd /home/ec2-user/ryzecapital
+
+yarn install
+yarn build
+
+sudo systemctl restart ryzecapital.service

@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/ryzecapital
+hooks:
+  AfterInstall:
+    - location: scripts/after_install
+      timeout: 300
+      runas: root
