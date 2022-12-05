@@ -1,6 +1,5 @@
 export class CreateClientDto {
     name: string;
-    taxId: string;
-    username: string;
+    email: string;
     password: string;
 }

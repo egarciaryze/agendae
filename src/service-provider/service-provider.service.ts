@@ -11,17 +11,14 @@ export class ServiceProviderService {
   async create(createServiceProviderDto: CreateServiceProviderDto) {
     let user = User.create({
       id: v4(),
-      username: createServiceProviderDto.username,
+      username: createServiceProviderDto.email,
       password: createServiceProviderDto.password,
     })
 
     let client = ServiceProvider.create({
       id: v4(),
-      companyName: createServiceProviderDto.companyName,
-      taxId: createServiceProviderDto.taxId,
+      name: createServiceProviderDto.name,
       email: createServiceProviderDto.email,
-      phone: createServiceProviderDto.phone,
-      address: createServiceProviderDto.address,
     })
 
     await user.save();
@@ -34,7 +31,7 @@ export class ServiceProviderService {
     return await ServiceProvider.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return await ServiceProvider.findOne(id);
   }
 
@@ -43,10 +40,10 @@ export class ServiceProviderService {
   }
 
   async remove(id: number) {
-    return await ServiceProvider.delete(id);
+    return ServiceProvider.delete(id);
   }
 
   async getServiceProviderSchedulle(id: string) {
-    return await Schedulle.find({ where: { serviceProviderId: id } });
+    return Schedulle.find({ where: { serviceProvider: id }, order: { date:  "ASC" }, relations: ['client', 'serviceProvider']});
   }
 }

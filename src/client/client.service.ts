@@ -6,20 +6,23 @@ import { v4 } from 'uuid';
 import { User } from '../users/users.entity'
 import { SchedulletDto } from './dto/schedulle.dto';
 import { Schedulle } from './entities/schedulle.entity';
+import { ServiceProviderService } from '../service-provider/service-provider.service'
 
 @Injectable()
 export class ClientService {
+  constructor(private readonly serviceProviderService: ServiceProviderService) {}
+
   async create(createClientDto: CreateClientDto) {
     let user = User.create({
       id: v4(),
-      username: createClientDto.username,
+      username: createClientDto.email,
       password: createClientDto.password,
     })
 
     let client = Client.create({
       id: v4(),
       name: createClientDto.name,
-      taxId: createClientDto.taxId,
+      email: createClientDto.email,
     })
 
     await user.save();
@@ -28,23 +31,27 @@ export class ClientService {
     return client;
   }
 
-  // async schedulle(id: string, schedulleDto: SchedulletDto) {
-  //   let schedulle = Schedulle.create({
-  //     id: v4(),
-  //     client: id,
-  //     serviceProvider: schedulleDto.serviceProviderId,
-  //   })
+  async schedulle(id: string, schedulleDto: SchedulletDto) {
+    const client = await this.findOne(schedulleDto.clientId);
+    const serviceProvider = await this.serviceProviderService.findOne(schedulleDto.serviceProviderId)
 
-  //   await schedulle.save();
+    let schedulle = Schedulle.create({
+      client,
+      serviceProvider,
+      date: schedulleDto.date,
+      hour: schedulleDto.hour,
+    })
 
-  //   return schedulle;
-  // }
+    await schedulle.save();
+
+    return schedulle;
+  }
 
   async findAll() {
     return await Client.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return await Client.findOne(id);
   }
 

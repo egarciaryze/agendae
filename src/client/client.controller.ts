@@ -14,12 +14,6 @@ export class ClientController {
     return this.clientService.create(createClientDto);
   }
 
-  // @UseGuards(JwtAuthGuard)
-  // @Post(':id/schedulle')
-  // schedulle(@Param('id') id: string, @Body() schedulletDto: SchedulletDto) {
-  //   return this.clientService.schedulle(id, schedulletDto);
-  // }
-
   @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
@@ -29,7 +23,7 @@ export class ClientController {
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.clientService.findOne(+id);
+    return this.clientService.findOne(id);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -42,5 +36,11 @@ export class ClientController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.clientService.remove(+id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post(':id/schedulle')
+  schedulle(@Param('id') id: string, @Body() schedulleDto: SchedulletDto) {
+    return this.clientService.schedulle(id, schedulleDto);
   }
 }

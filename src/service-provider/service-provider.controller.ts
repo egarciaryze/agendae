@@ -22,7 +22,7 @@ export class ServiceProviderController {
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.serviceProviderService.findOne(+id);
+    return this.serviceProviderService.findOne(id);
   }
 
   @UseGuards(JwtAuthGuard)

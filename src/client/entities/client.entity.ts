@@ -1,5 +1,5 @@
 import { User } from "../../users/users.entity";
-import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { Schedulle } from "./schedulle.entity";
 
 @Entity('clients')
@@ -11,21 +11,12 @@ export class Client extends BaseEntity {
     name: string;
 
     @Column()
-    taxId: string;
-
-    @Column()
     email: string;
 
-    @Column()
-    phone: string;
-
-    @Column()
-    address: string;
-
-    @OneToOne(() => User, (user) => user.client) // specify inverse side as a second parameter
+    @OneToOne(() => User, (user) => user.client)
     @JoinColumn()
     user: User;
 
-    @OneToOne(() => Schedulle, (schedulle) => schedulle.client)
+    @OneToMany(() => Schedulle, (schedulle) => schedulle.client)
     schedulle: Schedulle
 }

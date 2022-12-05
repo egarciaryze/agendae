@@ -1,5 +1,5 @@
 import { Schedulle } from "../../client/entities/schedulle.entity";
-import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { User } from "../../users/users.entity";
 
 @Entity('service_providers')
@@ -8,24 +8,15 @@ export class ServiceProvider extends BaseEntity {
     id: string;
 
     @Column()
-    companyName: string;
-
-    @Column()
-    taxId: string;
+    name: string;
 
     @Column()
     email: string;
-
-    @Column()
-    phone: string;
-
-    @Column()
-    address: string;
 
     @OneToOne(() => User, (user) => user.client)
     @JoinColumn()
     user: User;
 
-    @OneToOne(() => Schedulle, (schedulle) => schedulle.client)
+    @OneToMany(() => Schedulle, (schedulle) => schedulle.client)
     schedulle: Schedulle
 }
